@@ -35,23 +35,8 @@ This repository currently provides one board target:
 
 Example:
 
-```json
-{
-  "nrf-connect.boardRoots": [
-    "/path/to/xiao-nrf54l15-boards-nrf-bare-metal-sdk"
-  ]
-}
-```
+<img  height="800" alt="image" src="https://github.com/user-attachments/assets/d0412b1b-d25d-4f4e-a1d6-946e0952fe98" />
 
-You can also point directly to:
-
-```json
-{
-  "nrf-connect.boardRoots": [
-    "/path/to/xiao-nrf54l15-boards-nrf-bare-metal-sdk/boards"
-  ]
-}
-```
 
 4. Create a new build configuration and select `bm_xiao_softdevice` as the board target.
 
@@ -80,16 +65,6 @@ From board DTS/YAML:
 - SoftDevice partition: `107 KiB` at `0x00162000`
 - App RAM: `238 KiB` (`app_ram`)
 
-## Repository layout
-
-```text
-boards/seeed/bm_xiao_softdevice/
-  board.yml
-  board.cmake
-  Kconfig*
-  sysbuild.cmake
-  pre_dt_board.cmake
-  bm_xiao_softdevice*_*.dts*
-  include/board-config.h
-  support/openocd.cfg
-```
+## Contributions & Improvements
+**PRs welcome!**
+- Adding an mcuboot + softdevice variant 
