@@ -1,0 +1,59 @@
+/*
+ * Copyright (c) 2025 Nordic Semiconductor ASA
+ *
+ * SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+ */
+
+/* XIAO hardware definitions */
+#include "bm_xiao_softdevice_common.dtsi"
+
+/delete-node/ &cpuapp_sram;
+
+/ {
+	compatible = "seeed,bm_xiao_softdevice_nrf54l15-cpuapp";
+	model = "Seeed Bare Metal XIAO nRF54L15 Application MCU";
+
+	chosen {
+		zephyr,flash-controller = &rram_controller;
+		zephyr,boot-mode = &boot_mode0;
+	};
+
+	soc {
+		reserved-memory@20000000 {
+			#address-cells = <1>;
+			#size-cells = <1>;
+			reg = <0x20000000 0x80>;
+			ranges;
+
+			nrf_kmu_reserved_push_area: memory@20000000 {
+				compatible = "zephyr,memory-region", "mmio-sram";
+				reg = <0x20000000 0x80>;
+				zephyr,memory-region = "nrf_kmu_reserved_push_area";
+				status = "okay";
+			};
+		};
+
+		cpuapp_sram: memory@20000080 {
+			compatible = "mmio-sram";
+			#address-cells = <1>;
+			#size-cells = <1>;
+			reg = <0x20000080 (DT_SIZE_K(256) - 0x80)>;
+			ranges = <0x0 0x20000080 (DT_SIZE_K(256) - 0x80)>;
+		};
+	};
+};
+
+/* Use entire RRAM for Application CPU. */
+&cpuapp_rram {
+	reg = <0x0 DT_SIZE_K(1524)>;
+};
+
+&gpregret1 {
+	status = "okay";
+
+	boot_mode0: boot_mode@0 {
+		compatible = "zephyr,retention";
+		status = "okay";
+		reg = <0x0 0x1>;
+	};
+};

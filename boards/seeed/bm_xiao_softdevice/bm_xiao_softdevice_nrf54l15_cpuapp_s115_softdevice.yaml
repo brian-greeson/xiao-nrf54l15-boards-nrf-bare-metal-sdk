@@ -1,0 +1,17 @@
+#
+# Copyright (c) 2025 Nordic Semiconductor
+#
+# SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+#
+
+identifier: bm_xiao_softdevice/nrf54l15/cpuapp/s115_softdevice
+name: Bare_Metal-XIAO-nRF54L15-nRF54L15-Application-S115-SoftDevice
+type: mcu
+arch: arm
+toolchain:
+  - gnuarmemb
+  - xtools
+  - zephyr
+sysbuild: true
+ram: 238
+flash: 1408
